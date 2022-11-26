@@ -40,7 +40,7 @@ const Content = () => {
                     <h4>Search Matches of Your Favourite Team</h4>
 
                     <input type="search"
-                        placeholder="Search..."
+                       
                         onChange={(e) => setSearch(e.target.value)}
                     />
 
