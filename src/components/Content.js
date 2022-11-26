@@ -14,11 +14,20 @@ const Content = () => {
             url: `https://www.scorebat.com/video-api/v3/feed/?token=MzU0NDVfMTY2OTIyNTk2NV8zNWY5NjFiMDU1YmM4MGUzNjIxM2VlZjUxMGYxNTMxM2JkMTk2MDZj`
         }).then(res => {
             // console.log(res.data);
-            setData(res.data.response)
+            setData(res.data.response);
         }).catch(error => console.log("Data fetching Error")
         )
 
     }, [search])
+
+    const ele=data.filter(searchMatch);
+    
+    function searchMatch(value){
+       if (search === "") 
+              return value;
+        else if (value.title.toLowerCase().includes(search.toLowerCase())) 
+              return value;
+          }
 
 
     return (
@@ -41,19 +50,19 @@ const Content = () => {
 
             <div className="content">
 
-                {data.filter((value) => {
-                    if (value.title.toLowerCase().includes(search.toLowerCase())) {
+                {/* {data.filter(function(value){
+                   
+                  if (search === "") 
                         return value;
-                    }
-                    else if (search === "") {
+                    
+                  else  if (value.title.toLowerCase().includes(search.toLowerCase())) 
                         return value;
-                    }
-
-                }).map((ele) => {
+                    }) */}
+                   {ele.map((ele) => {
                     return <div className="ele-div" key={ele.title} onClick={() => window.open(ele.matchviewUrl)}>
 
                         <div className="ele-img back-clr" >
-                            <img src={ele.thumbnail} />
+                            <img src={ele.thumbnail} alt="thumbnail" />
                         </div>
 
                         <div className="ele-heading">
